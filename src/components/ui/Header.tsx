@@ -8,8 +8,8 @@ interface Props {
 	onCartIconClick: () => void
 }
 
-const Header = ({ onCartIconClick }: Props) => {
-	const totalItems = useFromStore(useCartStore, state => state.totalItems)
+export default function Header({ onCartIconClick }: Props) {
+	const cart = useFromStore(useCartStore, state => state.cart)
 
 	return (
 		<header className='bg-gray-900 text-white py-4 flex items-center justify-between h-14 sticky top-0 z-10'>
@@ -23,12 +23,10 @@ const Header = ({ onCartIconClick }: Props) => {
 						onClick={onCartIconClick}
 					>
 						<FiShoppingCart />
-						<div className='text-white rounded-full bg-blue-700 w-5 h-5 text-sm -ml-1'>{totalItems}</div>
+						<div className='text-white rounded-full bg-blue-700 w-5 h-5 text-sm -ml-1'>{cart?.length}</div>
 					</button>
 				</div>
 			</nav>
 		</header>
 	)
 }
-
-export default Header
